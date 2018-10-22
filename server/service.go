@@ -106,8 +106,8 @@ func (s *Server) RegisterFunction(servicePath string, fn interface{}, metadata s
 	if s.Plugins == nil {
 		s.Plugins = &pluginContainer{}
 	}
-
-	return s.Plugins.DoRegisterFunction(fname, fn, metadata)
+	_=fname
+	return s.Plugins.DoRegisterFunction(servicePath, fn, metadata)
 }
 
 // RegisterFunctionName is like RegisterFunction but uses the provided name for the function
@@ -117,7 +117,7 @@ func (s *Server) RegisterFunctionName(servicePath string, name string, fn interf
 		s.Plugins = &pluginContainer{}
 	}
 
-	s.Plugins.DoRegisterFunction(name, fn, metadata)
+	s.Plugins.DoRegisterFunction(servicePath, fn, metadata)
 	_, err := s.registerFunction(servicePath, fn, name, true)
 	return err
 }
